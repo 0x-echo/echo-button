@@ -1,6 +1,6 @@
 {
   "name": "@0xecho/button",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "dependencies": {
     "@popperjs/core": "^2.11.6",
     "axios": "^1.2.0",
@@ -17,6 +17,7 @@
     "@rollup/plugin-json": "^5.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "rollup": "^3.5.1",
+    "rollup-plugin-replace": "^2.2.0",
     "rollup-terser": "^1.0.3"
   },
   "type": "module",

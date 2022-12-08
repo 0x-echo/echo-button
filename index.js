@@ -276,7 +276,6 @@ export default class EchoButton {
 				div.addEventListener(event, this.hidePopover.bind(this, 'popover'))
 			})
 		} else {
-			console.log('alway show')
 			this.$popover.style.display = 'block'
 		}
 
@@ -323,7 +322,7 @@ export default class EchoButton {
 							{
 								name: 'flip',
 								options: {
-									fallbackPlacements: []
+									fallbackPlacements: ['bottom', 'left', 'right']
 								}
 							}
 						])

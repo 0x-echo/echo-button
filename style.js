@@ -1,5 +1,63 @@
 export default function (options) {
   return `
+  .echo-like,
+  .echo-like *,
+  .echo-popover,
+  .echo-popover * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .echo-like li,
+  .echo-popover li {
+    list-style: none;
+  }
+  
+  .echo-like a,
+  .echo-popover a {
+    text-decoration: none;
+  }
+  
+  .echo-has-liked .echo-like {
+    color: #4E75F6;
+  }
+  
+  .echo-has-liked .echo-like__icon {
+    fill: #4E75F6;
+  }
+  
+  .echo-like {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    font-family: Arial,sans-serif;
+    color: #16171C;
+    cursor: pointer;
+    transition: all .3s ease;
+  }
+  
+  .echo-like:hover {
+    color: #4E75F6;
+  }
+  
+  .echo-like:hover .echo-like__icon {
+    fill: #4E75F6;
+  }
+  
+  .echo-like__icon {
+    fill: #4C505D;
+    transition: all .3s ease;
+  }
+  
+  .echo-like__icon + .echo-like__count {
+    margin-left: 6px;
+  }
+  
   .echo-popover {
     width: 260px;
     padding: 20px 16px 16px;
@@ -9,6 +67,7 @@ export default function (options) {
     box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
     display: none;
     z-index: ${options.zIndex};
+    font-family: Arial,sans-serif;
   }
   
   .echo-popover[data-show] {
@@ -33,6 +92,24 @@ export default function (options) {
     border-right-color: transparent;
   }
   
+  .echo-popover[data-popper-placement=right] .echo-popover__arrow {
+    left: -5px;
+  }
+  
+  .echo-popover[data-popper-placement=right] .echo-popover__arrow::before {
+    border-right-color: transparent;
+    border-top-color: transparent;
+  }
+  
+  .echo-popover[data-popper-placement=left] .echo-popover__arrow {
+    right: -5px;
+  }
+  
+  .echo-popover[data-popper-placement=left] .echo-popover__arrow::before {
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+  }
+  
   .echo-popover__arrow::before {
     content: '';
     display: block;
@@ -41,40 +118,6 @@ export default function (options) {
     background: white;
     transform: rotate(45deg);
     border: 1px solid #F4F5FA;
-  }
-  
-  .echo-has-liked .echo-like {
-    color: #4E75F6;
-  }
-  
-  .echo-has-liked .echo-like__icon {
-    fill: #4E75F6;
-  }
-  
-  .echo-like {
-    display: inline-flex;
-    align-items: center;
-    font-size: 14px;
-    color: #16171C;
-    cursor: pointer;
-    transition: all .3s ease;
-  }
-  
-  .echo-like:hover {
-    color: #4E75F6;
-  }
-  
-  .echo-like:hover .echo-like__icon {
-    fill: #4E75F6;
-  }
-  
-  .echo-like__icon {
-    fill: #4C505D;
-    transition: all .3s ease;
-  }
-  
-  .echo-like__icon + .echo-like__count {
-    margin-left: 6px;
   }
   
   .echo-popover__power {
@@ -132,7 +175,7 @@ export default function (options) {
     height: 26px;
     border-radius: 50%;
     background: white;
-    border: 1px solid #efefef;
+    border: 1px solid #F4F5FA;
     box-shadow: white 0px 0px 0px 2px;
     object-fit: cover;
     overflow: hidden;
@@ -142,14 +185,15 @@ export default function (options) {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 24px;
-    height: 24px;
+    min-width: 26px;
+    height: 26px;
     padding: 0 6px;
-    border-radius: 12px;
+    border-radius: 13px;
     font-size: 12px;
     color: #4C505D;
     background: #F4F5FA;
-    box-shadow: rgb(255 255 255) 0px 0px 0px 2px;
+    border: 1px solid #F4F5FA;
+    box-shadow: white 0px 0px 0px 2px;
   }
   
   .echo-popover__bottom {
@@ -165,6 +209,8 @@ export default function (options) {
   }
   
   .echo-popover__homelink {
+    display: flex;
+    align-items: center;
     font-size: 12px;
     color: #929AB2;
     transition: all .3s ease;

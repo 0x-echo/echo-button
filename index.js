@@ -195,7 +195,9 @@ export default class EchoButton {
 
       <div class="echo-popover__bottom">
         <div class="echo-popover__partner">
-          <a class="echo-popover__homelink" href="https://0xecho.com" targer="_blank">ECHO</a>
+          <a class="echo-popover__homelink" href="https://0xecho.com" targer="_blank">
+						ECHO
+					</a>
           ${this.options.partnerName ? '<span> x ' + this.options.partnerName + '</span>' : ''}
         </div>
         

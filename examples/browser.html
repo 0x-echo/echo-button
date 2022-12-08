@@ -1,0 +1,16 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <div id="button" style="display:inline-block;"></div>
+    <script src="../dist/button.min.js"></script>
+    <script>
+      new EchoButton({
+        targetUri: 'https://0xecho.com',
+        maxDisplayLikers: 5,
+        alwaysShowPopover: false,
+        popoverAutoFlip: false
+      }).mount('#button')
+    </script>
+  </body>
+</html>

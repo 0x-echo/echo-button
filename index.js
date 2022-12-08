@@ -622,6 +622,8 @@ export default class EchoButton {
 	}
 
 	destroy() {
+		this.popper && this.popper.destroy()
+
 		this.updateTimer && clearInterval(this.updateTimer)
 		document.removeEventListener('visibilitychange', this.onVisibilityChange.bind(this))
 

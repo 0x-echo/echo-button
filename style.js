@@ -347,10 +347,11 @@ export default function (options) {
   
   .echo-theme-dark .echo-popover__liker-image,
   .echo-theme-dark .echo-popover__liker-more {
-    box-shadow: rgba(255, 255, 255, .3) 0px 0px 0px 2px;
+    box-shadow: #0d0f17 0px 0px 0px 2px;
   }
 
   .echo-theme-dark .echo-popover__liker-more {
+    border: none;
     background: rgba(255, 255, 255, .1);
     color: white;
   }

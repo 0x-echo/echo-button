@@ -4,6 +4,7 @@
   <body>
     <div id="button" style="display:inline-block;"></div>
     <script src="../dist/button.min.js"></script>
+    <div id="button-dark" style="display:inline-block;"></div>
     <script>
       new EchoButton({
         targetUri: 'https://0xecho.com',
@@ -11,6 +12,15 @@
         alwaysShowPopover: false,
         popoverAutoFlip: false
       }).mount('#button')
+      
+      new EchoButton({
+        targetUri: 'https://0xecho.com',
+        maxDisplayLikers: 5,
+        alwaysShowPopover: false,
+        partnerName: 'Partner',
+        popoverAutoFlip: false,
+        theme: 'dark'
+      }).mount('#button-dark')
     </script>
   </body>
 </html>

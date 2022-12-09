@@ -169,6 +169,10 @@ export default function (options) {
   .echo-popover__liker-item:nth-child(5) {
     z-index: 5;
   }
+
+  .echo-popover__liker-item:nth-child(5) {
+    z-index: 4;
+  }
   
   .echo-popover__liker-image {
     width: 26px;
@@ -209,8 +213,6 @@ export default function (options) {
   }
   
   .echo-popover__homelink {
-    display: flex;
-    align-items: center;
     font-size: 12px;
     color: #929AB2;
     transition: all .3s ease;
@@ -343,8 +345,14 @@ export default function (options) {
     background: #0d0f17;
   }
   
-  .echo-theme-dark .echo-popover__liker-image {
+  .echo-theme-dark .echo-popover__liker-image,
+  .echo-theme-dark .echo-popover__liker-more {
     box-shadow: rgba(255, 255, 255, .3) 0px 0px 0px 2px;
+  }
+
+  .echo-theme-dark .echo-popover__liker-more {
+    background: rgba(255, 255, 255, .1);
+    color: white;
   }
   
   .echo-theme-dark .echo-popover__power {

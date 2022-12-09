@@ -319,12 +319,19 @@ export default class EchoButton {
 					}
 				},
 				...(this.options.popoverAutoFlip
-					? []
+					? [
+							{
+								name: 'flip',
+								options: {
+									fallbackPlacements: [ 'bottom', 'left', 'right' ]
+								}
+							}
+						]
 					: [
 							{
 								name: 'flip',
 								options: {
-									fallbackPlacements: ['bottom', 'left', 'right']
+									fallbackPlacements: []
 								}
 							}
 						])

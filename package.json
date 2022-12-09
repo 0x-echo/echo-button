@@ -9,7 +9,8 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.mjs"
+    "build": "rollup -c rollup.config.mjs",
+    "build:watch": "rollup -c rollup.config.mjs --watch"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",

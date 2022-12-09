@@ -552,7 +552,7 @@ export default class EchoButton {
 				this.$loadingMessage.style.display = 'none'
 			}
 		} else {
-			this.showError('Please install MetaMask first')
+			this.showMessage('error', 'Please install MetaMask first')
 		}
 	}
 

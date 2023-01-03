@@ -1,50 +1,50 @@
-import { ethers } from 'ethers'
 import secp256k1 from 'secp256k1'
+import { randomBytes } from '@ethersproject/random'
+import { arrayify, hexlify } from '@ethersproject/bytes'
 
 class Sign {
-	constructor(hexPriviateKey, hexPublicKey) {
-		if (!hexPriviateKey) {
-			this.privateKey = ethers.utils.randomBytes(32)
-		} else {
-			this.privateKey = ethers.utils.arrayify(hexPriviateKey)
-		}
+  constructor(hexPriviateKey, hexPublicKey) {
+    if (!hexPriviateKey) {
+      this.privateKey = randomBytes(32)
+    } else {
+      this.privateKey = arrayify(hexPriviateKey)
+    }
 
-		if (hexPublicKey) {
-			this.publicKey = ethers.utils.arrayify(hexPublicKey)
-		}
+    if (hexPublicKey) {
+      this.publicKey = arrayify(hexPublicKey)
+    }
 
-		this.getPublicKey()
-	}
+    this.getPublicKey()
+  }
 
-	getPrivateKey(hexlify = false) {
-		return hexlify ? ethers.utils.hexlify(this.privateKey) : this.privateKey
-	}
+  getPrivateKey(_hexlify = false) {
+    return _hexlify ? hexlify(this.privateKey) : this.privateKey
+  }
 
-	getPublicKey(hexlify = false) {
-		if (this.publicKey) {
-			return hexlify ? ethers.utils.hexlify(this.publicKey) : this.publicKey
-		}
-		var compressed = secp256k1.publicKeyCreate(this.privateKey)
+  getPublicKey(_hexlify = false) {
+    if (this.publicKey) {
+      return _hexlify ? hexlify(this.publicKey) : this.publicKey
+    }
+    var compressed = secp256k1.publicKeyCreate(this.privateKey)
 
-		this.compressedPublicKey = compressed
+    this.compressedPublicKey = compressed
 
-		// this.publicKey =  secp256k1.publicKeyConvert(compressed, false)
-		this.publicKey = compressed
-		return hexlify ? ethers.utils.hexlify(this.publicKey) : this.publicKey
-	}
+    // this.publicKey =  secp256k1.publicKeyConvert(compressed, false)
+    this.publicKey = compressed
+    return _hexlify ? hexlify(this.publicKey) : this.publicKey
+  }
 
-	sign(msg, hexlify = false) {
-		const rs = secp256k1.ecdsaSign(msg, this.privateKey)
-		return hexlify ? ethers.utils.hexlify(rs.signature) : rs
-	}
+  sign(msg, _hexlify = false) {
+    const rs = secp256k1.ecdsaSign(msg, this.privateKey)
+    return _hexlify ? hexlify(rs.signature) : rs
+  }
 
-	verify(signature, msg) {
-		console.log('tyepof', typeof signature)
-		if (typeof signature === 'string') {
-			signature = ethers.utils.arrayify(signature)
-		}
-		return secp256k1.ecdsaVerify(signature, msg, this.publicKey)
-	}
+  verify(signature, msg) {
+    if (typeof signature === 'string') {
+      signature = arrayify(signature)
+    }
+    return secp256k1.ecdsaVerify(signature, msg, this.publicKey)
+  }
 }
 
 export default Sign

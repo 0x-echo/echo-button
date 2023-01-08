@@ -38,19 +38,19 @@ export default class EchoButton {
 				throw new Error(`ECHO: ${one} is required`)
 			}
 		})
-		this.options = Object.assign({}, defaultOptions, options)
+		this.options = Object.assign({}, defaultOptions(), options)
 
 		if (nodes[this.options.node]) {
 			this.options.node = nodes[this.options.node]
 		}
 
-		this.options.defaultAvatars = [
-			this.options.defaultAvatars[0] || defaultAvatar1,
-			this.options.defaultAvatars[1] || defaultAvatar2,
-			this.options.defaultAvatars[2] || defaultAvatar3,
-		]
-
-		console.log('default', this.options)
+		if (Array.isArray(this.options.defaultAvatars)) {
+			this.options.defaultAvatars = [
+				this.options.defaultAvatars[0] || defaultAvatar1,
+				this.options.defaultAvatars[1] || defaultAvatar2,
+				this.options.defaultAvatars[2] || defaultAvatar3,
+			]
+		}
 
 		// @todo get all data in a request and cache them
 		this.batchTargetUris = options.batch_target_uris || []
@@ -396,7 +396,7 @@ export default class EchoButton {
 
 				this.likers = res.data.data.list.map((one) => {
 					if (!one.author.avatar) {
-						one.author.avatar = this.pickAvatar(one.author.address)
+						one.author._avatar = this.pickAvatar(one.author.address)
 					}
 					return one
 				})
@@ -417,7 +417,7 @@ export default class EchoButton {
 							alt="<%- liker.author.dotbit || liker.author.ens || liker.author.address %>"
 							title="<%- liker.author.dotbit || liker.author.ens || liker.author.address %>"
 							width="16"
-							src="<%- liker.author.avatar %>">
+							src="<%- liker.author.avatar || liker.author._avatar %>">
 					</li>
 					<% }); %>`)(
 						{

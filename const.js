@@ -5,7 +5,7 @@ export const nodes = {
   testNode: 'https://local-dev.third.chat'
 }
 
-export const defaultOptions = {
+export const defaultOptions = () => ({
   theme: 'light',
 	node: nodes.mainNode,
 	buttonSize: '14',
@@ -15,7 +15,7 @@ export const defaultOptions = {
   numberType: 'power', // or count
   zIndex: 999,
   defaultAvatars: []
-}
+})
 
 export const likeSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="{{size}}" height="{{size}}"><path fill="none" d="M0 0h24v24H0z"/><path d="M14.6 8H21a2 2 0 0 1 2 2v2.104a2 2 0 0 1-.15.762l-3.095 7.515a1 1 0 0 1-.925.619H2a1 1 0 0 1-1-1V10a1 1 0 0 1 1-1h3.482a1 1 0 0 0 .817-.423L11.752.85a.5.5 0 0 1 .632-.159l1.814.907a2.5 2.5 0 0 1 1.305 2.853L14.6 8zM7 10.588V19h11.16L21 12.104V10h-6.4a2 2 0 0 1-1.938-2.493l.903-3.548a.5.5 0 0 0-.261-.571l-.661-.33-4.71 6.672c-.25.354-.57.644-.933.858zM5 11H3v8h2v-8z"/></svg>`
 export const defaultAvatar1 = `data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMzYgMzYiIGZpbGw9Im5vbmUiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPjxtYXNrIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjAiIHk9IjAiIHdpZHRoPSIzNiIgaGVpZ2h0PSIzNiI+PHJlY3Qgd2lkdGg9IjM2IiBoZWlnaHQ9IjM2IiByeD0iNzIiIGZpbGw9IiNGRkZGRkYiPjwvcmVjdD48L21hc2s+PGcgbWFzaz0idXJsKCNtYXNrX19iZWFtKSI+PHJlY3Qgd2lkdGg9IjM2IiBoZWlnaHQ9IjM2IiBmaWxsPSIjMGM4ZjhmIj48L3JlY3Q+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjM2IiBoZWlnaHQ9IjM2IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IC0xKSByb3RhdGUoMTU1IDE4IDE4KSBzY2FsZSgxLjIpIiBmaWxsPSIjZmZhZDA4IiByeD0iNiI+PC9yZWN0PjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMgLTQpIHJvdGF0ZSgtNSAxOCAxOCkiPjxwYXRoIGQ9Ik0xNSAyMWMyIDEgNCAxIDYgMCIgc3Ryb2tlPSIjMDAwMDAwIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjwvcGF0aD48cmVjdCB4PSIxNCIgeT0iMTQiIHdpZHRoPSIxLjUiIGhlaWdodD0iMiIgcng9IjEiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzAwMDAwMCI+PC9yZWN0PjxyZWN0IHg9IjIwIiB5PSIxNCIgd2lkdGg9IjEuNSIgaGVpZ2h0PSIyIiByeD0iMSIgc3Ryb2tlPSJub25lIiBmaWxsPSIjMDAwMDAwIj48L3JlY3Q+PC9nPjwvZz48L3N2Zz4=`

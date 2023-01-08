@@ -197,7 +197,7 @@ export default class EchoButton {
       <div
         class="echo-popover__power"
         title="Estimated Total Value of all Liking Address">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#FFAA02"><path fill="none" d="M0 0h24v24H0z"/><path d="M13 10h7l-9 13v-9H4l9-13z"/></svg>
+        <svg class="echo-popover__power-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#FFAA02"><path fill="none" d="M0 0h24v24H0z"/><path d="M13 10h7l-9 13v-9H4l9-13z"/></svg>
         <span class="echo-popover__power-label">Liking Power: </span>
         <span class="echo-popover__power-value">$0</span>
       </div>
@@ -264,7 +264,7 @@ export default class EchoButton {
 
 	createPopover() {
 		const div = document.createElement('div')
-		div.className = 'echo-popover'
+		div.className = 'echo-popover ' + this.options.popoverClass
 		div.innerHTML = this.compilePopoverTemplate({})
 		document.body.appendChild(div)
 

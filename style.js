@@ -41,7 +41,7 @@ export default function (options) {
     transition: all .3s ease;
   }
   
-  .echo-like:hover {
+  .echo-like:hover .echo-like__count {
     color: #4E75F6;
   }
   

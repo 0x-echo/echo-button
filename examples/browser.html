@@ -48,6 +48,14 @@
         <div id="button-dark" style="display:inline-block;"></div>
       </div>
     </div>
+
+    <div
+      class="echo-button__box">
+      <div
+        class="echo-button__box-item">
+        <div id="button-avatar" style="display:inline-block;"></div>
+      </div>
+    </div>
     <script src="../dist/button.min.js"></script>
     <script>
       new EchoButton({
@@ -63,6 +71,15 @@
         partnerName: 'Partner',
         theme: 'dark'
       }).mount('#button-dark')
+
+      new EchoButton({
+        targetUri: 'https://0xecho.com',
+        maxDisplayLikers: 5,
+        alwaysShowPopover: false,
+        partnerName: 'Partner',
+        theme: 'light',
+        defaultAvatars: ['https://mirror.xyz/favicon.ico', 'https://mirror.xyz/favicon.ico', 'https://mirror.xyz/favicon.ico']
+      }).mount('#button-avatar')
     </script>
   </body>
 </html>

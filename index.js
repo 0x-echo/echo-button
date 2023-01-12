@@ -1,7 +1,6 @@
 import Axios from 'axios'
 import { setupCache, buildWebStorage } from 'axios-cache-interceptor'
 import { v4 as uuidv4 } from 'uuid'
-import template from 'lodash.template'
 import { createPopper } from '@popperjs/core'
 
 import { hashString, insertStyle } from './libs/common'
@@ -189,7 +188,7 @@ export default class EchoButton {
 	}
 
 	getPopoverTemplate() {
-		this.compilePopoverTemplate = template(
+		this.compilePopoverTemplate = 
 			`
     <div>
       <ul class="echo-popover__liker-list"></ul>
@@ -223,11 +222,7 @@ export default class EchoButton {
       <div class="echo-popover__arrow" data-popper-arrow></div>
     </div> 
 
-   `,
-			{
-				interpolate: /{{([\s\S]+?)}}/g
-			}
-		)
+   `
 	}
 
 	setLogined(from) {
@@ -265,7 +260,7 @@ export default class EchoButton {
 	createPopover() {
 		const div = document.createElement('div')
 		div.className = 'echo-popover ' + this.options.popoverClass
-		div.innerHTML = this.compilePopoverTemplate({})
+		div.innerHTML = this.compilePopoverTemplate
 		document.body.appendChild(div)
 
 		this.$popover = div
@@ -320,6 +315,7 @@ export default class EchoButton {
 
 		this.popper = createPopper(this.$echo, this.$popover, {
 			placement: 'top',
+			resize: true,
 			modifiers: [
 				{
 					name: 'offset',
@@ -410,23 +406,18 @@ export default class EchoButton {
 					'$' + this.formatNumber(res.data.data.target_summary.like_power)
 
 				if (this.likers.length) {
-					let likersHTML = template(`<% likers.forEach(function(liker) { %>
-					<li class="echo-popover__liker-item">
-						<img
-							class="echo-popover__liker-image"
-							alt="<%- liker.author.dotbit || liker.author.ens || liker.author.address %>"
-							title="<%- liker.author.dotbit || liker.author.ens || liker.author.address %>"
-							width="16"
-							src="<%- liker.author.avatar || liker.author._avatar %>">
-					</li>
-					<% }); %>`)(
-						{
-							likers: this.likers.slice(0, this.options.maxDisplayLikers)
-						},
-						{
-							interpolate: /{{([\s\S]+?)}}/g
-						}
-					)
+					let likersHTML = ''
+					this.likers.slice(0, this.options.maxDisplayLikers).forEach(liker => {
+						likersHTML += `
+						<li class="echo-popover__liker-item">
+							<img
+								class="echo-popover__liker-image"
+								alt="${liker.author.dotbit || liker.author.ens || liker.author.address}"
+								title="${liker.author.dotbit || liker.author.ens || liker.author.address}"
+								width="16"
+								src="${liker.author.avatar || liker.author._avatar}">
+						</li>`
+					})
 
 					if (likeCounts > this.options.maxDisplayLikers) {
 						const left = likeCounts - this.options.maxDisplayLikers

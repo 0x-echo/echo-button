@@ -1,6 +1,6 @@
 {
   "name": "@0xecho/button",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "dependencies": {
     "@ethersproject/bytes": "^5.7.0",
     "@ethersproject/random": "^5.7.0",

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .echo-dialog-parent--hidden {
+      overflow: hidden;
+    }
+    
+    .echo-overlay {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 2000;
+      height: 100%;
+      background-color: rgba(0, 0, 0, .5);
+      overflow: auto;
+    }
+    
+    .echo-overlay,
+    .echo-overlay * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      outline: none;
+      word-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto
+    }
+    
+    .echo-connect-dialog {
+      position: relative;
+      margin: 15vh auto 50px;
+      width: 90%;
+      max-width: 485px;
+      font-family: "Inter", Arial, sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      background: white;
+      border-radius: 20px;
+    }
+    
+    .echo-connect-dialog a {
+      color: #4E75F6;
+      text-decoration: none;
+      transition: color .3s;
+    }
+    
+    .echo-connect-dialog a:hover {
+      color: #3864F5;
+    }
+    
+    .echo-connect-dialog__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 35px 35px 0;
+    }
+    
+    .echo-connect-dialog__header-icon {
+      margin-right: 12px;
+    }
+    
+    .echo-connect-dialog__title {
+      flex: 1;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    .echo-connect-dialog__close {
+      display: flex;
+      padding: 6px;
+      border: none;
+      border-radius: 50%;
+      background: #F4F5FA;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+    
+    .echo-connect-dialog__close:hover {
+      background: #E9EFFE; 
+    }
+    
+    .echo-connect-dialog__close:hover .echo-connect-dialog__close-icon {
+      fill: #4E75F6;
+    }
+    
+    .echo-connect-dialog__close-icon {
+      width: 18px;
+      height: 18px;
+      fill: #4C505D;
+    }
+    
+    .echo-connect-dialog__body {
+      padding: 30px 35px 50px;
+    }
+    
+    .echo-connect-dialog__wallet-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    
+    .echo-wallet-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 15px 12px;
+      border-radius: 12px;
+      border: 1px solid #E6E8ED;
+      background: white;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+    
+    .echo-wallet-item.active,
+    .echo-wallet-item:hover {
+      border-color: #4E75F6;
+      box-shadow: 0 0 4px rgba(78, 117, 246, .5);
+    }
+    
+    .echo-wallet-item.disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+    
+    .echo-wallet-item.disabled:hover {
+      border-color: #E6E8ED;
+      box-shadow: none;
+    }
+    
+    .echo-wallet-item--row {
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: 12px 20px;
+    }
+    
+    .echo-wallet-item--row .echo-wallet-item__logo {
+      margin-right: 10px;
+    }
+      
+    .echo-wallet-item--row .echo-wallet-item__label {
+      margin-top: 0;
+      font-size: 12px;
+    }
+    
+    .echo-wallet-item__logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    
+    .echo-wallet-item__label {
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      color: #4C505D;
+    }
+    
+    .echo-connect-dialog__tip {
+      margin-top: 30px;
+      font-size: 12px;
+      text-align: center;
+      color: #4C505D;
+    }
+    
+    @media screen and (max-width: 767px) {
+      .echo-connect-dialog__header {
+        padding: 25px 20px 0;
+      }
+      
+      .echo-connect-dialog__header-icon {
+        font-size: 20px;
+      }
+      
+      .echo-connect-dialog__header-title {
+        font-size: 16px;
+      }
+      
+      .echo-connect-dialog__body {
+        padding: 20px 20px 30px;
+      }
+      
+      .echo-connect-dialog__wallet-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+    
+      .echo-wallet-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 16px 20px;
+      }
+      
+      .echo-wallet-item__logo {
+        margin-right: 10px;
+      }
+      
+      .echo-wallet-item__label {
+        margin-top: 0;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body
+  class="echo-dialog-parent--hidden">
+  <div
+    class="echo-overlay">
+    <div
+      class="echo-connect-dialog">
+      <div
+        class="echo-connect-dialog__header">
+        <svg 
+          class="echo-connect-dialog__header-icon"
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          width="24" 
+          height="24">
+          <path fill="none" d="M0 0h24v24H0z"/>
+          <path d="M22 7h1v10h-1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h18a1 1 0 0 1 1 1v3zm-2 10h-6a5 5 0 0 1 0-10h6V5H4v14h16v-2zm1-2V9h-7a3 3 0 0 0 0 6h7zm-7-4h3v2h-3v-2z"/>
+        </svg>
+        
+        <div
+          class="echo-connect-dialog__title">
+          Connect Wallet
+        </div>
+        
+        <button
+          class="echo-connect-dialog__close">
+          <svg 
+            class="echo-connect-dialog__close-icon"
+            xmlns="http://www.w3.org/2000/svg" 
+            viewBox="0 0 24 24" 
+            width="24" 
+            height="24">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div
+        class="echo-connect-dialog__body">
+        <div
+          class="echo-connect-dialog__wallet-list">
+          <div
+            class="echo-wallet-item">
+            <img 
+              class="echo-wallet-item__logo"
+              alt="MetaMask"
+              src="https://embed.0xecho.com.ipns.page/_nuxt/metamask.ed589db6.svg" 
+              title="MetaMask">
+          
+            <div
+              class="echo-wallet-item__label">
+              MetaMask
+            </div>
+          </div>
+          
+          <div
+            class="echo-wallet-item">
+            <img 
+              class="echo-wallet-item__logo"
+              alt="WalletConnect"
+              src="https://embed.0xecho.com.ipns.page/_nuxt/walletconnect.6e016fd7.svg" 
+              title="WalletConnect">
+          
+            <div
+              class="echo-wallet-item__label">
+              WalletConnect
+            </div>
+          </div>
+          
+          <div
+            class="echo-wallet-item">
+            <img 
+              class="echo-wallet-item__logo"
+              alt="Phantom"
+              src="https://embed.0xecho.com.ipns.page/_nuxt/phantom.1ea826f3.png" 
+              title="Phantom">
+          
+            <div
+              class="echo-wallet-item__label">
+              Phantom
+            </div>
+          </div>
+          
+          <a
+            class="echo-wallet-item"
+            target="_blank"
+            href="">
+            <img 
+              class="echo-wallet-item__logo"
+              alt="ArConnect"
+              src="https://embed.0xecho.com.ipns.page/_nuxt/arconnect.1e465d61.png" 
+              title="ArConnect">
+          
+            <div
+              class="echo-wallet-item__label">
+              ArConnect
+            </div>
+          </a>
+        </div>
+        
+        <div
+          class="echo-connect-dialog__tip">
+          By connecting your wallet and signing a message, you agree to 0xecho's
+          <a
+            href="https://0xecho.com/tos" 
+            target="_blank">
+            Term's & Conditions
+          </a> and 
+          <a
+            href="https://0xecho.com/privacy" 
+            target="_blank">
+            Privacy Policy
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
